@@ -1,0 +1,45 @@
+body {
+  color: white;
+}
+
+.container {
+  border: 1px solid #420039;
+  width: 450px;
+  margin: 10% auto;
+  padding: 5px;
+  border-radius: 4px;
+  background: #f6f2ff;
+}  
+.converter-box {
+  padding: 15px;
+  background: #420039;
+}
+.selector {
+  background-color: #932f6d;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.text-area {
+  width: 100%;
+  padding: 10px 5px;
+  border: 2px solid #420039;
+  border-radius: 4px;
+}
+.selector-container {
+  display: flex;
+  justify-content: space-between;
+}
+.conversion_output {
+  margin-top: 10px;
+  font-size: 40px;
+  text-align: right;
+}
+.conversion_output-summary {
+  text-align: right;
+  font-size: 25px;
+}
+.title {
+    font-size: 30px;
+    text-align: center;
+}
