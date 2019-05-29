@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -37,5 +38,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tope-olajide/react-currency-converter/issues"
-  },  "homepage": "https://github.com/tope-olajide/react-currency-converter#readme"
+  },
+  "homepage": "https://github.com/tope-olajide/react-currency-converter#readme"
 }
