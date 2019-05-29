@@ -174,5 +174,5 @@ const listOfCurrencies = [
   { label: "Vietnam Dong", value: "VND" },
   { label: "Yemen Rial", value: "YER" },
   { label: "Zambia Kwacha", value: "ZMK" },
-  { label: "Zimbabwe Dollar", value: "ZWD" }
+  { label: "Zimbabwe Dollar", value: "ZWD" }]
 export default listOfCurrencies;
