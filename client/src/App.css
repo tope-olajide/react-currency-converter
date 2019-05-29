@@ -8,11 +8,11 @@ body {
   margin: 10% auto;
   padding: 5px;
   border-radius: 4px;
-  background: #f6f2ff;
+  background: transparent;
 }  
 .converter-box {
   padding: 15px;
-  background: #420039;
+  background: rgba(43, 1, 37, 0.8)
 }
 .selector {
   background-color: #932f6d;
@@ -21,7 +21,7 @@ body {
   border-radius: 4px;
 }
 .text-area {
-  width: 100%;
+  width: 97%;
   padding: 10px 5px;
   border: 2px solid #420039;
   border-radius: 4px;
