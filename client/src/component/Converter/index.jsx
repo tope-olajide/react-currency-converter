@@ -32,6 +32,7 @@ const CurrencyConverter = () => {
         })
         .catch(err => {
           setIsError(true);
+          setIsloading(false)
           console.log("Error: ", err.message);
         });
     };
@@ -60,8 +61,8 @@ const CurrencyConverter = () => {
   const handleToCurrencyChange = event => {
     setToCurrency({ value: event.target.value });
   };
-  const baseCurrencyName = getFullCurrencyName(fromCurrency.value[0].label);
-  const quoteCurrencyName = getFullCurrencyName(toCurrency.value[0].label);
+  const baseCurrencyName = getFullCurrencyName(fromCurrency.value)[0].label;
+  const quoteCurrencyName = getFullCurrencyName(toCurrency.value)[0].label;
 
   return (
     <>
@@ -100,14 +101,13 @@ const CurrencyConverter = () => {
           </div>
           <p class="conversion_output">{isLoading ? "" : conversionResults}</p>
           <p class="conversion_output-summary">
-            {isLoading ? (
+            {isLoading ? 
               <i
                 class="fa fa-spinner fa-spin"
                 style={{ "font-size": "40px" }}
               />
-            ) : (
-              `${amountToConvert} ${baseCurrencyName} equals ${conversionResults} ${quoteCurrencyName}`
-            )}
+             : ""}
+             { !isLoading && !isError ?`${amountToConvert} ${baseCurrencyName} equals ${conversionResults} ${quoteCurrencyName}`:""}
             <br />
             {isError
               ? `Unable to connect, please check your internet connection and try again`
