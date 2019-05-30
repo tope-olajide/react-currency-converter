@@ -1,7 +1,10 @@
 body {
   color: white;
 }
-
+.converter-box {
+  padding: 15px;
+  background: rgba(43, 1, 37, 0.8)
+}
 .container {
   border: 1px solid #420039;
   width: 450px;
@@ -10,10 +13,6 @@ body {
   border-radius: 4px;
   background: transparent;
 }  
-.converter-box {
-  padding: 15px;
-  background: rgba(43, 1, 37, 0.8)
-}
 .selector {
   background-color: #932f6d;
   height: 30px;
@@ -29,6 +28,7 @@ body {
 .selector-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap
 }
 .conversion_output {
   margin-top: 10px;
@@ -42,4 +42,15 @@ body {
 .title {
     font-size: 30px;
     text-align: center;
+}
+@media screen and (max-width: 600px) { 
+	.container {
+		width: 90%;
+    }
+  .conversion_output {
+      text-align: left;
+    }
+  .conversion_output-summary {
+      text-align: left;
+    }
 }
