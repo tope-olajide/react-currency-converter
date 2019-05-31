@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import listOfCurrencies from './listOfCurrencies';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import listOfCurrencies from "./listOfCurrencies";
+import GetUserInput from "./textInput";
+import SelectCurrency from "./currencySelectTag";
+import ConversionOutput from "./conversionOutput";
 /**
  * @description - Currency converter functional component
  *
  * @function CurrencyConverter
  *
- * @returns {void} nothing
+ * @returns {object} jsx elements
  *
  */
 const CurrencyConverter = () => {
   const [amountToConvert, setAmountToConvert] = useState(1);
   const [fromCurrency, setFromCurrency] = useState({
-    value: 'USD'
+    value: "USD"
   });
   const [toCurrency, setToCurrency] = useState({
-    value: 'NGN'
+    value: "NGN"
   });
   const [isLoading, setIsloading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [conversionResults, setConversionResults] = useState('');
+  const [conversionResults, setConversionResults] = useState("");
   useEffect(() => {
     /**
      * @description - handles the currency conversion any time the amountToConvert, fromCurrency, toCurrency state changes
      *
      * @function handleCurrencyConversion
      *
-     * @returns {void} nothing
+     * @returns {integer} Conversion result
+     *
+     * @returns {boolean} true/false
      *
      */
     const handleCurrencyConversion = () => {
@@ -38,17 +43,17 @@ const CurrencyConverter = () => {
             toCurrency.value
           }&compact=ultra&apiKey=c219dc5827286852c542`
         )
-        .then((response) => {
+        .then(response => {
           setIsloading(false);
           setIsError(false);
           const { data } = response;
           const result = amountToConvert * Object.values(data)[0];
           setConversionResults(result);
         })
-        .catch((err) => {
+        .catch(err => {
           setIsError(true);
           setIsloading(false);
-          console.log('Error: ', err.message);
+          console.log("Error: ", err.message);
         });
     };
     handleCurrencyConversion();
@@ -70,12 +75,13 @@ const CurrencyConverter = () => {
    *
    * @param {string} currencyAcronym - the currency acronym that will be used to search for the currency name
    */
-  const getFullCurrencyName = currencyAcronym => listOfCurrencies.filter((currency) => {
-    if (currency.value === currencyAcronym) {
-      return currency.value;
-    }
-    return false;
-  });
+  const getFullCurrencyName = currencyAcronym =>
+    listOfCurrencies.filter(currency => {
+      if (currency.value === currencyAcronym) {
+        return currency.value;
+      }
+      return false;
+    });
   /**
    * @description - Saves the input value to amountToConvert state onChange
    *
@@ -86,7 +92,7 @@ const CurrencyConverter = () => {
    * @returns {method} setAmountToConvert
    *
    */
-  const handleCurrencyInputChange = (event) => {
+  const handleCurrencyInputChange = event => {
     setAmountToConvert(event.target.value);
   };
   /**
@@ -99,7 +105,7 @@ const CurrencyConverter = () => {
    * @returns {method} setFromCurrency
    *
    */
-  const handleFromCurrencyChange = (event) => {
+  const handleFromCurrencyChange = event => {
     setFromCurrency({ value: event.target.value });
   };
   /**
@@ -112,7 +118,7 @@ const CurrencyConverter = () => {
    * @returns {method} setToCurrency
    *
    */
-  const handleToCurrencyChange = (event) => {
+  const handleToCurrencyChange = event => {
     setToCurrency({ value: event.target.value });
   };
   // getFullCurrencyName function returns an array of json.
@@ -125,56 +131,33 @@ const CurrencyConverter = () => {
       <div className="container">
         <div className="converter-box">
           <h3 className="title">Currency Converter</h3>
-          <p>Enter Amount to Convert</p>
-          <input
-            className="text-area"
-            placeholder="Enter Amount to Convert"
-            type="text"
-            defaultValue="1"
-            onChange={handleCurrencyInputChange}
-          />
+          <GetUserInput handleCurrencyInputChange={handleCurrencyInputChange} />
           <div className="selector-container">
             <div>
               <p>From</p>
-              <select
-                className="selector"
-                value={fromCurrency.value}
-                onChange={handleFromCurrencyChange}
-              >
-                {currencyList}
-              </select>
+              <SelectCurrency
+                currencyValue={fromCurrency.value}
+                handleCurrencyChange={handleFromCurrencyChange}
+                currencyList={currencyList}
+              />
             </div>
             <div>
               <p>To</p>
-              <select
-                className="selector"
-                value={toCurrency.value}
-                onChange={handleToCurrencyChange}
-              >
-                {currencyList}
-              </select>
+              <SelectCurrency
+                currencyValue={toCurrency.value}
+                handleCurrencyChange={handleToCurrencyChange}
+                currencyList={currencyList}
+              />
             </div>
           </div>
-          <p className="conversion_output">
-            {isLoading ? '' : conversionResults}
-          </p>
-          <p className="conversion_output-summary">
-            {isLoading ? (/* if the page is loading show loading animation */
-              <i
-                className="fa fa-spinner fa-spin"
-                style={{ 'font-size': '40px' }}
-              />
-            ) : (
-              ''
-            )}
-            {!isLoading && !isError/* if the page is not loading and there's no error, show the output summary */
-              ? `${amountToConvert} ${baseCurrencyName} equals ${conversionResults} ${quoteCurrencyName}`
-              : ''}
-            <br />
-            {isError/* if theres error, show error message */
-              ? 'Unable to connect, please check your internet connection and try again'
-              : ''}
-          </p>
+          <ConversionOutput
+            isLoading={isLoading}
+            conversionResults={conversionResults}
+            isError={isError}
+            amountToConvert={amountToConvert}
+            baseCurrencyName={baseCurrencyName}
+            quoteCurrencyName={quoteCurrencyName}
+          />
         </div>
       </div>
     </>
