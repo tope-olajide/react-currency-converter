@@ -6,14 +6,15 @@
     "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },"engines": {
+  },
+  "engines": {
     "npm": "6.4.1",
     "node": "10.15.1"
   },
@@ -41,6 +42,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tope-olajide/react-currency-converter/issues"
-  },
-  "homepage": "https://github.com/tope-olajide/react-currency-converter#readme"
+  }
 }
