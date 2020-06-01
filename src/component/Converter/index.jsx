@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import listOfCurrencies from "./listOfCurrencies";
-import GetUserInput from "./textInput";
-import SelectCurrency from "./currencySelectTag";
-import ConversionOutput from "./conversionOutput";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import listOfCurrencies from './listOfCurrencies';
+import GetUserInput from './textInput';
+import SelectCurrency from './currencySelectTag';
+import ConversionOutput from './conversionOutput';
 /**
  * @description - Currency converter functional component
  *
@@ -15,14 +15,14 @@ import ConversionOutput from "./conversionOutput";
 const CurrencyConverter = () => {
   const [amountToConvert, setAmountToConvert] = useState(1);
   const [fromCurrency, setFromCurrency] = useState({
-    value: "USD"
+    value: 'USD'
   });
   const [toCurrency, setToCurrency] = useState({
-    value: "NGN"
+    value: 'NGN'
   });
   const [isLoading, setIsloading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [conversionResults, setConversionResults] = useState("");
+  const [conversionResults, setConversionResults] = useState('');
   useEffect(() => {
     /**
      * @description - handles the currency conversion any time the amountToConvert, fromCurrency, toCurrency state changes
@@ -43,17 +43,17 @@ const CurrencyConverter = () => {
             toCurrency.value
           }&compact=ultra&apiKey=c219dc5827286852c542`
         )
-        .then(response => {
+        .then((response) => {
           setIsloading(false);
           setIsError(false);
           const { data } = response;
           const result = amountToConvert * Object.values(data)[0];
           setConversionResults(result);
         })
-        .catch(err => {
+        .catch((err) => {
           setIsError(true);
           setIsloading(false);
-          console.log("Error: ", err.message);
+          console.log('Error: ', err.message);
         });
     };
     handleCurrencyConversion();
@@ -71,17 +71,16 @@ const CurrencyConverter = () => {
    *
    * @returns {Array} currency.value
    *
-   * @returns {boolean} true of false
+   * @returns {boolean} true or false
    *
    * @param {string} currencyAcronym - the currency acronym that will be used to search for the currency name
    */
-  const getFullCurrencyName = currencyAcronym =>
-    listOfCurrencies.filter(currency => {
-      if (currency.value === currencyAcronym) {
-        return currency.value;
-      }
-      return false;
-    });
+  const getFullCurrencyName = currencyAcronym => listOfCurrencies.filter((currency) => {
+    if (currency.value === currencyAcronym) {
+      return currency.value;
+    }
+    return false;
+  });
   /**
    * @description - Saves the input value to amountToConvert state onChange
    *
@@ -92,7 +91,7 @@ const CurrencyConverter = () => {
    * @returns {method} setAmountToConvert
    *
    */
-  const handleCurrencyInputChange = event => {
+  const handleCurrencyInputChange = (event) => {
     setAmountToConvert(event.target.value);
   };
   /**
@@ -105,7 +104,7 @@ const CurrencyConverter = () => {
    * @returns {method} setFromCurrency
    *
    */
-  const handleFromCurrencyChange = event => {
+  const handleFromCurrencyChange = (event) => {
     setFromCurrency({ value: event.target.value });
   };
   /**
@@ -118,7 +117,7 @@ const CurrencyConverter = () => {
    * @returns {method} setToCurrency
    *
    */
-  const handleToCurrencyChange = event => {
+  const handleToCurrencyChange = (event) => {
     setToCurrency({ value: event.target.value });
   };
   // getFullCurrencyName function returns an array of json.
